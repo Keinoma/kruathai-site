@@ -1,6 +1,168 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import menu from '../data/menu.json';
+
+const formatPrice = (price: number) => `${price.toFixed(2)} CHF`;
 ---
 <Layout title="Commander">
   <h1>Commander à emporter</h1>
+  <p>
+    Choisissez vos plats et indiquez l'heure de retrait souhaitée (pour aujourd'hui).
+    Le paiement se fait sur place au retrait. Nous vous rappelons au besoin pour confirmer.
+  </p>
+
+  {menu.categories.map((category) => (
+    <section class="menu-category">
+      <h2>{category.name}</h2>
+      <ul class="menu-list">
+        {category.items.map((item) => (
+          <li
+            class="menu-item order-item"
+            data-id={item.id}
+            data-name={item.name}
+            data-price={item.price}
+          >
+            <div class="order-item-info">
+              <div class="menu-item-head">
+                <span class="menu-item-name">{item.name}</span>
+                <span class="menu-item-price">{formatPrice(item.price)}</span>
+              </div>
+              <p class="menu-item-desc">{item.description}</p>
+            </div>
+            <div class="qty-controls">
+              <button type="button" data-action="minus" aria-label={`Retirer ${item.name}`}>−</button>
+              <span class="qty" aria-live="polite">0</span>
+              <button type="button" data-action="plus" aria-label={`Ajouter ${item.name}`}>+</button>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </section>
+  ))}
+
+  <section class="cart" id="cart">
+    <h2>Votre commande</h2>
+    <p id="cart-empty">Votre panier est vide.</p>
+    <ul id="cart-lines" class="cart-lines"></ul>
+    <p class="cart-total">Total : <strong id="cart-total">0.00 CHF</strong></p>
+  </section>
+
+  <form id="order-form" class="order-form">
+    <label>Nom *
+      <input type="text" name="name" required autocomplete="name" />
+    </label>
+    <label>Téléphone *
+      <input type="tel" name="phone" required autocomplete="tel" />
+    </label>
+    <label>Email (pour recevoir une copie, facultatif)
+      <input type="email" name="email" autocomplete="email" />
+    </label>
+    <label>Heure de retrait souhaitée *
+      <input type="time" name="pickup" required />
+    </label>
+    <label>Remarques (allergies, etc.)
+      <textarea name="notes" rows="3"></textarea>
+    </label>
+
+    <!-- Anti-spam : champ invisible -->
+    <input type="checkbox" name="botcheck" class="hidden-field" tabindex="-1" autocomplete="off" />
+
+    <button type="submit" id="submit-btn" disabled>Envoyer la commande</button>
+    <p id="form-status" role="status"></p>
+  </form>
 </Layout>
+
+<script>
+  const ACCESS_KEY = '77853ef8-6287-4c8e-a0df-035b7098b098';
+
+  type Line = { name: string; price: number; qty: number };
+  const cart: Record<string, Line> = {};
+
+  const form = document.getElementById('order-form') as HTMLFormElement;
+  const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
+  const statusEl = document.getElementById('form-status') as HTMLElement;
+  const cartLines = document.getElementById('cart-lines') as HTMLElement;
+  const cartEmpty = document.getElementById('cart-empty') as HTMLElement;
+  const cartTotal = document.getElementById('cart-total') as HTMLElement;
+
+  const lines = () => Object.values(cart).filter((l) => l.qty > 0);
+  const total = () => lines().reduce((sum, l) => sum + l.price * l.qty, 0);
+
+  function renderCart() {
+    cartLines.innerHTML = '';
+    for (const l of lines()) {
+      const li = document.createElement('li');
+      li.textContent = `${l.qty} × ${l.name} — ${(l.price * l.qty).toFixed(2)} CHF`;
+      cartLines.appendChild(li);
+    }
+    cartEmpty.hidden = lines().length > 0;
+    cartTotal.textContent = `${total().toFixed(2)} CHF`;
+    submitBtn.disabled = lines().length === 0;
+  }
+
+  document.querySelectorAll<HTMLElement>('.order-item').forEach((el) => {
+    const id = el.dataset.id!;
+    const qtyEl = el.querySelector('.qty') as HTMLElement;
+    cart[id] = { name: el.dataset.name!, price: Number(el.dataset.price), qty: 0 };
+
+    el.querySelectorAll<HTMLButtonElement>('button[data-action]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const delta = btn.dataset.action === 'plus' ? 1 : -1;
+        cart[id].qty = Math.min(20, Math.max(0, cart[id].qty + delta));
+        qtyEl.textContent = String(cart[id].qty);
+        renderCart();
+      });
+    });
+  });
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (lines().length === 0) return;
+
+    const data = new FormData(form);
+    if (data.get('botcheck')) return;
+
+    const message = [
+      ...lines().map((l) => `${l.qty} x ${l.name} (${(l.price * l.qty).toFixed(2)} CHF)`),
+      '',
+      `Total : ${total().toFixed(2)} CHF (paiement au retrait)`,
+      `Retrait souhaité : ${data.get('pickup')}`,
+      `Téléphone : ${data.get('phone')}`,
+      `Remarques : ${data.get('notes') || '-'}`,
+    ].join('\n');
+
+    const payload: Record<string, unknown> = {
+      access_key: ACCESS_KEY,
+      subject: `Commande à emporter - ${data.get('name')} - ${data.get('pickup')}`,
+      from_name: 'Site Kruathai',
+      name: data.get('name'),
+      phone: data.get('phone'),
+      message,
+    };
+    if (data.get('email')) payload.email = data.get('email');
+
+    submitBtn.disabled = true;
+    statusEl.textContent = 'Envoi en cours…';
+
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      const result = await res.json();
+      if (!res.ok || !result.success) throw new Error(result.message || 'Erreur');
+
+      statusEl.textContent = 'Merci ! Votre commande a bien été envoyée. Nous vous rappelons si nécessaire.';
+      form.reset();
+      Object.values(cart).forEach((l) => (l.qty = 0));
+      document.querySelectorAll('.qty').forEach((q) => (q.textContent = '0'));
+      renderCart();
+    } catch {
+      statusEl.textContent = "Échec de l'envoi. Merci de réessayer ou de nous appeler.";
+      submitBtn.disabled = lines().length === 0;
+    }
+  });
+
+  renderCart();
+</script>

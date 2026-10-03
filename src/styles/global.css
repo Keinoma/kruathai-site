@@ -44,3 +44,31 @@ main { max-width: var(--max); margin: 0 auto; padding: 1.5rem 1rem; }
 .menu-item-price { white-space: nowrap; color: var(--accent); }
 .menu-item-desc { margin: 0.25rem 0 0; color: var(--muted); }
 .menu-item-tags { margin: 0.25rem 0 0; font-size: 0.85rem; color: var(--accent); }
+
+.order-item { display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+.order-item-info { flex: 1; }
+.qty-controls { display: flex; align-items: center; gap: 0.5rem; }
+.qty-controls button {
+  width: 2.25rem; height: 2.25rem; font-size: 1.25rem; line-height: 1;
+  border: 1px solid var(--accent); background: #fff; color: var(--accent);
+  border-radius: 50%; cursor: pointer;
+}
+.qty-controls button:hover { background: var(--accent); color: #fff; }
+.qty { min-width: 1.5rem; text-align: center; font-weight: 600; }
+
+.cart { margin-top: 2rem; padding: 1rem; background: #fff; border: 1px solid #eadfce; border-radius: 8px; }
+.cart-lines { padding-left: 1.25rem; }
+.cart-total { font-size: 1.1rem; }
+
+.order-form { display: grid; gap: 1rem; margin-top: 1.5rem; max-width: 520px; }
+.order-form label { display: grid; gap: 0.25rem; font-weight: 600; }
+.order-form input, .order-form textarea {
+  font: inherit; padding: 0.6rem; border: 1px solid #cdbfae; border-radius: 6px; background: #fff;
+}
+.order-form button[type='submit'] {
+  font: inherit; font-weight: 600; padding: 0.8rem 1rem; border: 0; border-radius: 6px;
+  background: var(--accent); color: #fff; cursor: pointer;
+}
+.order-form button[type='submit']:disabled { opacity: 0.5; cursor: not-allowed; }
+.hidden-field { position: absolute; left: -9999px; }
+
