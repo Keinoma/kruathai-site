@@ -1,0 +1,84 @@
+{
+  "categories": [
+    {
+      "id": "entrees",
+      "name": "Entrées",
+      "items": [
+        {
+          "id": "rouleaux-printemps",
+          "name": "Rouleaux de printemps",
+          "description": "4 pièces, légumes croquants, sauce aigre-douce",
+          "price": 9.5,
+          "tags": ["végétarien"]
+        },
+        {
+          "id": "satay-poulet",
+          "name": "Satay de poulet",
+          "description": "4 brochettes, sauce cacahuète",
+          "price": 12.0,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "soupes",
+      "name": "Soupes",
+      "items": [
+        {
+          "id": "tom-yum",
+          "name": "Tom Yum aux crevettes",
+          "description": "Bouillon citronnelle, galanga, champignons",
+          "price": 13.5,
+          "tags": ["épicé"]
+        },
+        {
+          "id": "tom-kha",
+          "name": "Tom Kha poulet",
+          "description": "Lait de coco, citronnelle, galanga",
+          "price": 13.0,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "plats",
+      "name": "Plats principaux",
+      "items": [
+        {
+          "id": "pad-thai",
+          "name": "Pad Thaï",
+          "description": "Nouilles de riz sautées, œuf, cacahuètes, citron vert",
+          "price": 22.0,
+          "tags": []
+        },
+        {
+          "id": "curry-vert",
+          "name": "Curry vert",
+          "description": "Lait de coco, aubergines, basilic thaï, riz jasmin",
+          "price": 24.0,
+          "tags": ["épicé"]
+        },
+        {
+          "id": "curry-legumes",
+          "name": "Curry rouge aux légumes",
+          "description": "Légumes de saison, lait de coco, riz jasmin",
+          "price": 21.0,
+          "tags": ["végétarien"]
+        }
+      ]
+    },
+    {
+      "id": "desserts",
+      "name": "Desserts",
+      "items": [
+        {
+          "id": "riz-mangue",
+          "name": "Riz gluant à la mangue",
+          "description": "Mangue fraîche, lait de coco",
+          "price": 9.0,
+          "tags": ["végétarien"]
+        }
+      ]
+    }
+  ]
+}

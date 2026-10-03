@@ -1,6 +1,29 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import menu from '../data/menu.json';
+
+const formatPrice = (price: number) => `${price.toFixed(2)} CHF`;
 ---
 <Layout title="Notre carte">
   <h1>Notre carte</h1>
+
+  {menu.categories.map((category) => (
+    <section class="menu-category" id={category.id}>
+      <h2>{category.name}</h2>
+      <ul class="menu-list">
+        {category.items.map((item) => (
+          <li class="menu-item">
+            <div class="menu-item-head">
+              <span class="menu-item-name">{item.name}</span>
+              <span class="menu-item-price">{formatPrice(item.price)}</span>
+            </div>
+            <p class="menu-item-desc">{item.description}</p>
+            {item.tags.length > 0 && (
+              <p class="menu-item-tags">{item.tags.join(' · ')}</p>
+            )}
+          </li>
+        ))}
+      </ul>
+    </section>
+  ))}
 </Layout>
