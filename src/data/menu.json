@@ -5,17 +5,93 @@
       "name": "Entrées",
       "items": [
         {
-          "id": "rouleaux-printemps",
-          "name": "Rouleaux de printemps",
-          "description": "4 pièces, légumes croquants, sauce aigre-douce",
-          "price": 9.5,
+          "id": "rouleaux-printemps-legumes",
+          "name": "Rouleaux de printemps aux légumes",
+          "description": "4 pièces",
+          "price": 14.0,
           "tags": ["végétarien"]
         },
         {
-          "id": "satay-poulet",
-          "name": "Satay de poulet",
-          "description": "4 brochettes, sauce cacahuète",
-          "price": 12.0,
+          "id": "nems",
+          "name": "Nems aux crabes et crevettes ou poulet",
+          "description": "4 pièces, au choix : crabe et crevettes ou poulet",
+          "price": 16.0,
+          "tags": []
+        },
+        {
+          "id": "raviolis-frits-crevettes",
+          "name": "Raviolis frits aux crevettes",
+          "description": "5 pièces",
+          "price": 16.0,
+          "tags": []
+        },
+        {
+          "id": "raviolis-vapeur-crabe",
+          "name": "Raviolis vapeur à la chair de crabe",
+          "description": "4 pièces",
+          "price": 16.0,
+          "tags": []
+        },
+        {
+          "id": "brochettes-poulet-satay",
+          "name": "Brochettes de poulet à la sauce satay",
+          "description": "4 pièces",
+          "price": 19.0,
+          "tags": []
+        },
+        {
+          "id": "trio-rouleaux-printemps",
+          "name": "Trio de rouleaux de printemps",
+          "description": "6 pièces : crevettes, poulet et légumes",
+          "price": 19.0,
+          "tags": []
+        },
+        {
+          "id": "beignet-crevette",
+          "name": "Beignets de crevette",
+          "description": "5 pièces",
+          "price": 16.0,
+          "tags": []
+        },
+        {
+          "id": "gyoza-poulet",
+          "name": "Gyoza au poulet",
+          "description": "5 pièces",
+          "price": 16.0,
+          "tags": []
+        },
+        {
+          "id": "assortiment-entrees",
+          "name": "Assortiment d'entrées cuisine thaï",
+          "description": "Pour 2 personnes : brochettes de poulet satay, rouleaux de printemps aux légumes, raviolis vapeur aux crevettes",
+          "price": 30.0,
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "salades",
+      "name": "Salades",
+      "items": [
+        {
+          "id": "salade-papaye-verte",
+          "name": "Salade de papaye verte",
+          "description": "",
+          "price": 16.0,
+          "tags": []
+        },
+        {
+          "id": "salade-boeuf-grille",
+          "name": "Salade de bœuf grillé",
+          "description": "Sauce épicée aux herbes, servie en plat",
+          "price": 34.0,
+          "tags": ["épicé"]
+        },
+        {
+          "id": "salade-crevettes-citronnelle",
+          "name": "Salade de crevettes grillées à la citronnelle",
+          "description": "Servie en plat",
+          "price": 34.0,
           "tags": []
         }
       ]
@@ -25,17 +101,17 @@
       "name": "Soupes",
       "items": [
         {
-          "id": "tom-yum",
-          "name": "Tom Yum aux crevettes",
-          "description": "Bouillon citronnelle, galanga, champignons",
-          "price": 13.5,
+          "id": "tom-yam-kung",
+          "name": "Soupe de crevettes épicées (Tom Yam Kung)",
+          "description": "",
+          "price": 16.0,
           "tags": ["épicé"]
         },
         {
-          "id": "tom-kha",
-          "name": "Tom Kha poulet",
-          "description": "Lait de coco, citronnelle, galanga",
-          "price": 13.0,
+          "id": "tom-kha-kai",
+          "name": "Soupe au lait de coco et poulet (Tom Kha Kai)",
+          "description": "",
+          "price": 16.0,
           "tags": []
         }
       ]
@@ -45,37 +121,261 @@
       "name": "Plats principaux",
       "items": [
         {
-          "id": "pad-thai",
-          "name": "Pad Thaï",
-          "description": "Nouilles de riz sautées, œuf, cacahuètes, citron vert",
-          "price": 22.0,
+          "id": "curry-vert-legumes",
+          "name": "Curry vert aux légumes",
+          "description": "",
+          "price": 29.0,
           "tags": []
         },
         {
-          "id": "curry-vert",
-          "name": "Curry vert",
-          "description": "Lait de coco, aubergines, basilic thaï, riz jasmin",
-          "price": 24.0,
+          "id": "curry-vert-poulet",
+          "name": "Curry vert au poulet",
+          "description": "",
+          "price": 32.0,
+          "tags": []
+        },
+        {
+          "id": "curry-vert-boeuf",
+          "name": "Curry vert au bœuf",
+          "description": "",
+          "price": 33.0,
+          "tags": []
+        },
+        {
+          "id": "curry-vert-crevettes",
+          "name": "Curry vert aux crevettes",
+          "description": "",
+          "price": 33.0,
+          "tags": []
+        },
+        {
+          "id": "curry-rouge-legumes",
+          "name": "Curry rouge aux légumes",
+          "description": "",
+          "price": 29.0,
+          "tags": []
+        },
+        {
+          "id": "curry-rouge-poulet",
+          "name": "Curry rouge au poulet",
+          "description": "",
+          "price": 32.0,
+          "tags": []
+        },
+        {
+          "id": "curry-rouge-boeuf",
+          "name": "Curry rouge au bœuf",
+          "description": "",
+          "price": 33.0,
+          "tags": []
+        },
+        {
+          "id": "curry-rouge-crevettes",
+          "name": "Curry rouge aux crevettes",
+          "description": "",
+          "price": 33.0,
+          "tags": []
+        },
+        {
+          "id": "curry-rouge-canard",
+          "name": "Curry rouge au canard",
+          "description": "",
+          "price": 34.0,
+          "tags": []
+        },
+        {
+          "id": "curry-massaman-poulet",
+          "name": "Curry Massaman au poulet",
+          "description": "",
+          "price": 32.0,
+          "tags": []
+        },
+        {
+          "id": "curry-massaman-boeuf",
+          "name": "Curry Massaman au bœuf",
+          "description": "",
+          "price": 33.0,
+          "tags": []
+        },
+        {
+          "id": "curry-paneang-poulet",
+          "name": "Curry Paneang au poulet",
+          "description": "",
+          "price": 32.0,
+          "tags": []
+        },
+        {
+          "id": "curry-paneang-boeuf",
+          "name": "Curry Paneang au bœuf",
+          "description": "",
+          "price": 33.0,
+          "tags": []
+        },
+        {
+          "id": "curry-paneang-daurade",
+          "name": "Curry Paneang à la daurade",
+          "description": "Daurade grillée en feuille de bananier",
+          "price": 45.0,
+          "tags": []
+        },
+        {
+          "id": "curry-jaune-aubergine",
+          "name": "Curry jaune aux aubergines",
+          "description": "",
+          "price": 30.0,
+          "tags": []
+        },
+        {
+          "id": "curry-jaune-poulet",
+          "name": "Curry jaune au poulet",
+          "description": "",
+          "price": 32.0,
+          "tags": []
+        },
+        {
+          "id": "phad-thai-legumes",
+          "name": "Phad Thaï aux légumes",
+          "description": "Nouilles sautées",
+          "price": 29.0,
+          "tags": []
+        },
+        {
+          "id": "phad-thai-poulet",
+          "name": "Phad Thaï au poulet",
+          "description": "Nouilles sautées",
+          "price": 32.0,
+          "tags": []
+        },
+        {
+          "id": "phad-thai-crevettes",
+          "name": "Phad Thaï aux crevettes",
+          "description": "Nouilles sautées",
+          "price": 33.0,
+          "tags": []
+        },
+        {
+          "id": "phad-thai-boeuf",
+          "name": "Phad Thaï au bœuf",
+          "description": "Nouilles sautées",
+          "price": 33.0,
+          "tags": []
+        },
+        {
+          "id": "saute-basilic-boeuf",
+          "name": "Sauté de bœuf au basilic",
+          "description": "",
+          "price": 33.0,
+          "tags": []
+        },
+        {
+          "id": "saute-basilic-poulet",
+          "name": "Sauté de poulet au basilic",
+          "description": "",
+          "price": 32.0,
+          "tags": []
+        },
+        {
+          "id": "saute-basilic-crevettes",
+          "name": "Sauté de crevettes au basilic",
+          "description": "",
+          "price": 33.0,
+          "tags": []
+        },
+        {
+          "id": "poulet-noix-cajou",
+          "name": "Poulet sauté aux noix de cajou",
+          "description": "",
+          "price": 32.0,
+          "tags": []
+        },
+        {
+          "id": "saute-gingembre-boeuf",
+          "name": "Sauté de bœuf au gingembre",
+          "description": "",
+          "price": 33.0,
+          "tags": []
+        },
+        {
+          "id": "saute-gingembre-poulet",
+          "name": "Sauté de poulet au gingembre",
+          "description": "",
+          "price": 32.0,
+          "tags": []
+        },
+        {
+          "id": "saute-gingembre-crevettes",
+          "name": "Sauté de crevettes au gingembre",
+          "description": "",
+          "price": 33.0,
+          "tags": []
+        },
+        {
+          "id": "aigre-douce-poulet",
+          "name": "Poulet à la sauce aigre-douce",
+          "description": "",
+          "price": 35.0,
+          "tags": []
+        },
+        {
+          "id": "aigre-douce-crevettes",
+          "name": "Crevettes à la sauce aigre-douce",
+          "description": "",
+          "price": 38.0,
+          "tags": []
+        },
+        {
+          "id": "boeuf-poivre-noir",
+          "name": "Bœuf au poivre noir piquant sur ardoise",
+          "description": "",
+          "price": 41.0,
           "tags": ["épicé"]
         },
         {
-          "id": "curry-legumes",
-          "name": "Curry rouge aux légumes",
-          "description": "Légumes de saison, lait de coco, riz jasmin",
-          "price": 21.0,
-          "tags": ["végétarien"]
+          "id": "legumes-saison-huitre",
+          "name": "Légumes de saison sautés à la sauce d'huître",
+          "description": "Sans riz",
+          "price": 25.0,
+          "tags": []
+        },
+        {
+          "id": "riz-saute-crevettes",
+          "name": "Riz sauté aux légumes et crevettes",
+          "description": "",
+          "price": 28.0,
+          "tags": []
+        },
+        {
+          "id": "riz-saute-poulet",
+          "name": "Riz sauté aux légumes et poulet",
+          "description": "",
+          "price": 28.0,
+          "tags": []
         }
       ]
     },
     {
-      "id": "desserts",
-      "name": "Desserts",
+      "id": "accompagnements",
+      "name": "Accompagnements",
       "items": [
         {
-          "id": "riz-mangue",
-          "name": "Riz gluant à la mangue",
-          "description": "Mangue fraîche, lait de coco",
-          "price": 9.0,
+          "id": "riz-jasmin",
+          "name": "Riz au jasmin à la vapeur",
+          "description": "Supplément",
+          "price": 5.0,
+          "tags": ["végétarien"]
+        },
+        {
+          "id": "riz-gluant",
+          "name": "Riz gluant",
+          "description": "Supplément",
+          "price": 5.0,
+          "tags": ["végétarien"]
+        },
+        {
+          "id": "riz-complet",
+          "name": "Riz complet",
+          "description": "Supplément",
+          "price": 5.0,
           "tags": ["végétarien"]
         }
       ]
